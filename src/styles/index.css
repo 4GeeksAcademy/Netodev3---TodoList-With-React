@@ -1,3 +1,7 @@
+body {
+    background-color: gray;
+}
+
 .todo-item {
     width: 100%;
     display: flex;

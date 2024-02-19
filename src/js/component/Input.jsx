@@ -3,11 +3,33 @@ import TodoItem from "./TodoItem";
 
 
 const Input = () => {
-  const [todos, setTodos] = useState([{
-    label: "Hacer la cama",
-    isDone: false
-  }]);
+  const [todos, setTodos] = useState([
+    {
+      label: "Hacer la cama",
+      isDone: false,
+    },
+  ]);
   const [item, setItem] = useState("");
+
+
+  const handleDelete = (index) => {
+    const updatedTodos = [...todos];
+    updatedTodos.splice(index, 1);
+    setTodos(updatedTodos);
+  };
+
+  const handleChange = (e) => {
+    setItem(e.target.value);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" && item.trim() !== "") {
+      setTodos([...todos, { label: item, isDone: false }]);
+      setItem("");
+    }
+  };
+
+
   return (
     <>
       <form
@@ -20,19 +42,26 @@ const Input = () => {
           type="text"
           placeholder="Añadir tarea ..."
           aria-label="todo-list input field"
-          //value={item}
-          onChange={(e) => {
-            setItem(e.target.value)
-          }}
-          onKeyDown={(e) => {
-            if (e.key == "Enter" && item != "")
-              setTodos([...todos, {label: item, isDone: false}])
-          }}
+          value={item}
+          onChange={handleChange}
+          onKeyDown={handleKeyDown}
         />
       </form>
-      {todos.map((todo) => {
-        return <h5>{todo.label}</h5>
-      })}
+
+      {todos.length === 0 ? (
+        <p>Lista de tareas vacía, añadir tareas</p>
+      ) : (
+        <ul>
+          {todos.map((todo, index) => {
+            <TodoItem
+              key={index}
+              label={todo.label}
+              isDone={todo.isDone}
+              deleteTodo={() => handleDelete(index)}
+            />;
+          })}
+        </ul>
+      )}
     </>
   );
 };
