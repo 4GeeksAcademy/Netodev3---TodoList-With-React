@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import TodoItem from "./TodoItem";
 
-
 const Input = () => {
   const [todos, setTodos] = useState([
     {
@@ -10,7 +9,6 @@ const Input = () => {
     },
   ]);
   const [item, setItem] = useState("");
-
 
   const handleDelete = (index) => {
     const updatedTodos = [...todos];
@@ -28,7 +26,6 @@ const Input = () => {
       setItem("");
     }
   };
-
 
   return (
     <>
@@ -52,14 +49,14 @@ const Input = () => {
         <p>Lista de tareas vacía, añadir tareas</p>
       ) : (
         <ul>
-          {todos.map((todo, index) => {
+          {todos.map((todo, index) => (
             <TodoItem
               key={index}
               label={todo.label}
               isDone={todo.isDone}
               deleteTodo={() => handleDelete(index)}
-            />;
-          })}
+            />
+          ))}
         </ul>
       )}
     </>

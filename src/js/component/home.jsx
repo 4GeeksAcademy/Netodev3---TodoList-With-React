@@ -1,5 +1,6 @@
 import React from "react";
 import Input from "./Input";
+import TodoItem from "./TodoItem";
 
 //create your first component
 const Home = () => {
