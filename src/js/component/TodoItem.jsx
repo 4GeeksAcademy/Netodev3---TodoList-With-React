@@ -1,9 +1,8 @@
 import React from "react";
 
-
 const TodoItem = ({ label, isDone, deleteTodo }) => {
   return (
-    <div className="todo-item">
+    <div className="todo-item m-4">
       <input type="checkbox" checked={isDone} onChange={() => {}} />
       <span className="todo-text">{label}</span>
       <button

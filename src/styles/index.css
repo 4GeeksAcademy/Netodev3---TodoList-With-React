@@ -26,3 +26,7 @@ input:checked ~ span.todo-text {
 span.todo-text {
     transition: opacity 0.5s ease-in-out;
 }
+
+p.noTaskAdvise {
+    
+}

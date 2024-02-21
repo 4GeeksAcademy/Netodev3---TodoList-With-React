@@ -46,7 +46,7 @@ const Input = () => {
       </form>
 
       {todos.length === 0 ? (
-        <p>Lista de tareas vacía, añadir tareas</p>
+        <p className="text-center m-4">Lista de tareas vacía, añadir tareas</p>
       ) : (
         <ul>
           {todos.map((todo, index) => (
