@@ -27,6 +27,12 @@ const Input = () => {
     }
   };
 
+  const toggleTodo = (index) => {
+    const updatedTodos = [...todos];
+    updatedTodos[index].isDone = !updatedTodos[index].isDone;
+    setTodos(updatedTodos);
+  };
+
   return (
     <>
       <form
@@ -55,6 +61,7 @@ const Input = () => {
               label={todo.label}
               isDone={todo.isDone}
               deleteTodo={() => handleDelete(index)}
+              toggleTodo={() => toggleTodo(index)}
             />
           ))}
         </ul>
