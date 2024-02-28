@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import TodoItem from "./TodoItem";
 
 const Input = () => {
+
+  // UseEffect --> GET
   const [todos, setTodos] = useState([
     {
       label: "Hacer la cama",
@@ -20,33 +22,43 @@ const Input = () => {
     setItem(e.target.value);
   };
 
-  const handleKeyDown = (e) => {
+  const handleKeyDown = async (e) => {
     if (e.key === "Enter" && item.trim() !== "") {
       setTodos([...todos, { label: item, isDone: false }]);
       setItem("");
       //POST
+      await fetch(urlTodos, {
+        method: "POST",
+        body: JSON.stringify(todos),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(err => console.log(err))
     }
   };
 
-  const toggleTodo = (index) => {
+  const toggleTodo = async (index) => {
     const updatedTodos = [...todos];
     updatedTodos[index].isDone = !updatedTodos[index].isDone;
     setTodos(updatedTodos);
     //PUT
+    await fetch(urlTodos, {
+      method: "PUT",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then(response => response.json())
+      .then(data => console.log(data))
+      .catch(err => console.log(err))
   };
 
   // URL de la API
-  const urlTodos = "https://playground.4geeks.com/apis/fake/todos";
-
-  const createData = async () => {
-    const response = await fetch(urlTodos, {
-      method: "POST",
-      body: JSON.stringify(dataToSend),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-  };
+  const urlTodos = "https://playground.4geeks.com/apis/fake/todos/netodev3";
 
   return (
     <>
