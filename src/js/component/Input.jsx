@@ -24,6 +24,7 @@ const Input = () => {
     if (e.key === "Enter" && item.trim() !== "") {
       setTodos([...todos, { label: item, isDone: false }]);
       setItem("");
+      //POST
     }
   };
 
@@ -31,6 +32,20 @@ const Input = () => {
     const updatedTodos = [...todos];
     updatedTodos[index].isDone = !updatedTodos[index].isDone;
     setTodos(updatedTodos);
+    //PUT
+  };
+
+  // URL de la API
+  const urlTodos = "https://playground.4geeks.com/apis/fake/todos";
+
+  const createData = async () => {
+    const response = await fetch(urlTodos, {
+      method: "POST",
+      body: JSON.stringify(dataToSend),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
   };
 
   return (
